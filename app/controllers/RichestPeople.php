@@ -1,44 +1,45 @@
 <?php
-class People extends Controller {
+class RichestPeople extends Controller {
   // Properties, field
-  private $personModel;
+  private $richestPersonModel;
 
   // Dit is de constructor
   public function __construct() {
-    $this->personModel = $this->model('Person');
+    $this->richestPersonModel = $this->model('RichestPerson');
   }
 
   public function index() {
-    $people = $this->personModel->getPeople();
+    $richestPeople = $this->richestPersonModel->getRichestPeople();
 
     $rows = '';
-    foreach ($people as $value){
+    foreach ($richestPeople as $value){
       $rows .= "<tr>
-                  <td>$value->id</td>
-                  <td>$value->name</td>
-                  <td>" . number_format($value->networth, 0, ',', '.') . "</td>
-                  <td>$value->age</td>
-                  <td>$value->myCompany</td>
-                  <td><a href='" . URLROOT . "/people/delete/$value->id'>delete</a></td>
+                  <td>$value->Id</td>
+                  <td>$value->Name</td>
+                  <td>" . number_format($value->Networth, 0, ',', '.') . "</td>
+                  <td>$value->Age</td>
+                  <td>$value->MyCompany</td>
+                  <td><a href='" . URLROOT . "/richestpeople/delete/$value->Id'>delete</a></td>
                 </tr>";
     }
 
 
     $data = [
       'title' => '<h1>De vijf rijkste mensen ter wereld</h1>',
-      'countries' => $rows
+      'richestpeople' => $rows
     ];
-    $this->view('people/index', $data);
+    $this->view('richestpeople/index', $data);
   }
 
-  public function delete($id) {
-    $this->personModel->deletePerson($id);
+  public function delete($Id) {
+    $this->richestPersonModel->deleteRichestPerson($Id);
 
     $data =[
-      'deleteStatus' => "Het record met id = $id is verwijdert"
+      'deleteStatus' => "Het record met id = $Id is verwijdert"
     ];
-    $this->view("people/delete", $data);
-    header("Refresh:3; url=" . URLROOT . "/people/index");
+    $this->view("richestpeople/delete", $data);
+    header("Refresh:3; url=" . URLROOT . "/richestpeople/index");
   }
+}
 
 ?>

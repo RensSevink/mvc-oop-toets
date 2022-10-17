@@ -1,5 +1,5 @@
 <?php
-  class Country {
+  class RichestPerson {
     // Properties, fields
     private $db;
 
@@ -7,13 +7,13 @@
       $this->db = new Database();
     }
 
-    public function getPeople() {
+    public function getRichestPeople() {
       $this->db->query("SELECT * FROM `richestpeople`;");
       $result = $this->db->resultSet();
       return $result;
     }
 
-    public function deletePerson($id) {
+    public function deleteRichestPerson($id) {
       $this->db->query("DELETE FROM richestpeople WHERE id = :id");
       $this->db->bind("id", $id, PDO::PARAM_INT);
       return $this->db->execute();
