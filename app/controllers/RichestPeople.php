@@ -16,7 +16,7 @@ class RichestPeople extends Controller {
       $rows .= "<tr>
                   <td>$value->Id</td>
                   <td>$value->Name</td>
-                  <td>" . number_format($value->Networth, 0, ',', '.') . "</td>
+                  <td>$value->Networth</td>
                   <td>$value->Age</td>
                   <td>$value->MyCompany</td>
                   <td><a href='" . URLROOT . "/richestpeople/delete/$value->Id'>delete</a></td>

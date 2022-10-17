@@ -8,7 +8,7 @@
     }
 
     public function getRichestPeople() {
-      $this->db->query("SELECT * FROM `richestpeople`;");
+      $this->db->query("SELECT * FROM `richestpeople` ORDER BY Networth;");
       $result = $this->db->resultSet();
       return $result;
     }
